@@ -1,6 +1,9 @@
 # 문제 : 숨바꼭질
 #
-- BFS 사용, 
+# BFS 사용
+# 나의 위치를 최상위 노드로 두고 C-1, C+1, C*2 로 가지를 쳐서 트리를 만들어보고
+# 방문할 거리를 BFS로 측정
+
 
 def bfs(s,e):
     q = []
@@ -17,7 +20,7 @@ def bfs(s,e):
         for i in (c-1,c+1,c*2):
             if 0<=i<=200000 and v[i] == 0:
                 q.append(i)
-                v[i] = v[c]+1
+                v[i] = v[c]+1              #  몇번을 이동했는지 알아야 하기 때문에 = +1 을 해줌
     return -1
 N,M = map(int,input().split())
 
