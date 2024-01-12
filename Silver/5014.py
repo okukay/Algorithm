@@ -1,4 +1,8 @@
-#
+# 스타트링크 문제
+
+# BFS 사용, 숨바꼭질이랑 비슷한 문제
+# 이동(c+U, c-D), 1층과 F층 범위, 신경쓰기
+
 
 from collections import deque
 def bfs(s, e):
