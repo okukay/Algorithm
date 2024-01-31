@@ -1,5 +1,5 @@
 # 접근방식
-# [필요 리스트] 1. V(방문했는지 확인용 리스트) 2. adj(입력을 이차배열로 받아 넣는 리스트), 3. ans(방문한 순서를 나타낼 = 결과 리스트)  
+# [필요 리스트] 1. V(방문했는지 확인용 리스트 (0,1 들어감)) 2. adj(입력을 이차배열로 받아 넣는 리스트 (양방향)), 3. ans(방문한 순서를 나타낼 = 결과 리스트)  
 
 # dfs(깊이우선 탐색= 한쪽으로 깊게 탐색) = 방문결과 ans에 추가하면서, 방문했으면 V[c]에도 추가 안했으면 dfs(s) 함수 다시 실행 ... 반복해서 v[c]가 전부 1이 되면 마침
 
@@ -16,7 +16,7 @@ def dfs(c):
 def bfs(s):
     q = []              # 필요한 q, v[], 변수 생성
 
-    q.append(s)         # Q에 초기데이터(들) 삽입
+    q.append(s)         # q에 초기데이터(들) 삽입
     ans_bfs.append(s)
     v[s] = 1
 
@@ -28,21 +28,26 @@ def bfs(s):
                 ans_bfs.append(n)
                 v[n] = 1
 
+
+# [2] adj에 값넣어주기 (양방향)
 N, M, V = map(int, input().split())
 adj = [[] for _ in range(N+1)]
 for _ in range(M):
     s, e = map(int, input().split())
     adj[s].append(e)
-    adj[e].append(s)    # 양방향
+    adj[e].append(s)    
 
-# [1] 오름차순 정렬
+
+# [2] 오름차순 정렬
 for i in range(1, N+1):
     adj[i].sort()
 
+# dfs 실행
 v = [0]*(N+1)
 ans_dfs = []
-dfs(V)                  # V부터 dfs를 시작해라
+dfs(V)                 
 
+# bfs 실행
 v = [0]*(N+1)
 ans_bfs = []
 bfs(V)
