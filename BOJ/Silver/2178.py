@@ -13,6 +13,7 @@ def bfs(si, sj, ei, ej):
 
     while q:
         ci,cj = q.pop(0)
+        # 결과 출력
         if (ci, cj) == (ei, ej):
             return v[ei][ej]
 
@@ -20,7 +21,7 @@ def bfs(si, sj, ei, ej):
             ni,nj = ci+di , cj+dj
             if 0<=ni<N and 0<=nj<M and arr[ni][nj] == 1 and v[ni][nj] == 0:
                 q.append((ni,nj))
-                v[ni][nj] = v[ci][cj]+1
+                v[ni][nj] = v[ci][cj]+1  # 최종 거리값을 찾는게 목적이기 때문에 한칸 움직일때마다 +1씩 갱신
 
 N, M = map(int, input().split())
 arr = [list(map(int,input()))for _ in range(N)]
