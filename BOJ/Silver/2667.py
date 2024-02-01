@@ -14,10 +14,11 @@ def bfs(si,sj):
 
     while q:
         ci,cj = q.pop(0)
+        
         for di,dj in ((-1,0),(1,0),(0,-1),(0,1)):
             ni, nj = ci+di, cj+dj
-            if 0<=ni<N and 0<=nj<N and jido[ni][nj] == 1 and v[ni][nj] == 0:
-                q.append((ni,nj))
+            if 0<=ni<N and 0<=nj<N and jido[ni][nj] == 1 and v[ni][nj] == 0:        # 조건에 부합하면 V배열에 1을 추가하면서 
+                q.append((ni,nj))                                                   # cnt +=1 해준다 = 한단지에 몇개를 돌았는지 확인하기 위해
                 v[ni][nj] = 1
                 cnt += 1
     return cnt
@@ -29,8 +30,8 @@ v = [[0]*N for _ in range(N)]
 result = []
 for i in range(N):
     for j in range(N):
-        if jido[i][j] == 1 and v[i][j] == 0:
-            result.append(bfs(i,j))
+        if jido[i][j] == 1 and v[i][j] == 0:       # 지도에서 1이면서 v배열이 0 (방문안했던 곳) 이면 BFS실행
+            result.append(bfs(i,j))                # 최종값 : BFS한 결과를 result에 추가, sort해서 출력
 
 result.sort()
 
