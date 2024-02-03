@@ -14,7 +14,7 @@ def bfs(s,e):
 
     while q:
         c = q.pop(0)
-        if c == e:
+        if c == e:        # while문을 돌면서 if c==e 계속해주는데 젤 처음 return 된값이 젤 최소(빠른)시간
             return v[e]-1
 
         for i in (c-1,c+1,c*2):
