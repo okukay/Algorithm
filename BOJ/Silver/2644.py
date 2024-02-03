@@ -29,7 +29,7 @@ for _ in range(M):
     adj[s].append(e)
     adj[e].append(s)
 
-for i in range(1, N+1):
+for i in range(1, N+1):        # 이렇게 S,E 받아서 할때 정렬 꼭해주기
     adj[i].sort()
 
 result = bfs(A,B)
