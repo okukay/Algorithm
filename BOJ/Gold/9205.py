@@ -29,13 +29,18 @@ def bfs(sj, si, ej, ei):
 
 TC = int(input())
 for _ in range(TC):
+#   [1] 출발위치
+    sj, si = map(int, input().split())         
     N = int(input())                            # 편의점 개수
-    sj, si = map(int, input().split())          # 출발위치
+    
+#   [2] 편의점 위치
     lst = []                                    # 편의점 위치 넣을 곳
     for _ in range(N):
-        tj, ti = map(int, input().split())      # 편의점 위치
+        tj, ti = map(int, input().split())     
         lst.append((tj, ti))
-    ej, ei = map(int, input().split())          # 도착위치
+
+#   [3] 도착위치
+    ej, ei = map(int, input().split())          
 
     result = bfs(sj, si, ej, ei)
     print(result)
