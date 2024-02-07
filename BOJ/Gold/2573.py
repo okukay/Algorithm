@@ -44,7 +44,7 @@ def solve():
         for i in range(1, N - 1):
             for j in range(1, M - 1):
                 if a_sub[i][j] > 0:
-                    arr[i][j] = max(0, arr[i][j] - a_sub[i][j])
+                    arr[i][j] = max(0, arr[i][j] - a_sub[i][j])    # max(0,값)해주는 이유는 0을 물로 지정했기때문에 -a가 안나오게 하기 위하여..
 
 
         # [3] 덩어리 개수 카운트
