@@ -22,7 +22,7 @@ def bfs(si,sj,h):
                 q.append((ni,nj))
                 v[ni][nj] =1
 
-def solve(h): # h높이에 잠기지 않는 역역 찾아서 bfs()실행
+def solve(h): # h높이에 잠기지 않는 영역 찾아서 bfs()실행
     cnt = 0
     for i in range(N):
         for j in range(N):
