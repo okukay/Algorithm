@@ -16,9 +16,9 @@ def bfs(sj, si, ej, ei):
             return "happy"
             
         for i in range(N):
-            if v[i] == 0:                                # 편의점방문
-                nj, ni = lst[i]                          # 다음 좌표가 = 편의점좌표[i]
-                if abs(cj - nj) + abs(ci - ni) <= 1000:
+            if v[i] == 0:                                    # 편의점방문
+                nj, ni = lst[i]                              # 다음 좌표가 = 편의점좌표[i]
+                if abs(cj - nj) + abs(ci - ni) <= 1000:      # 현재 거리 에서 다음 거리까지 가 1000 이하이면 이동가능하여, append 해줌
                     q.append((nj, ni))
                     v[i] = 1
     return "sad"
