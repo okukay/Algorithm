@@ -1,5 +1,7 @@
 # 적록색약 문제
-# 
+# 정상 bfs, 색약 bfs 따로 만들어서 동시에 실행하도록 설계
+
+
 def bfs(si,sj,color):
     global cnt
     q = []
