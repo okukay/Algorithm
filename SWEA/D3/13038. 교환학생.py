@@ -11,7 +11,7 @@ for test_case in range(1, tc+1):
         if val == 1:                # 최소 등교일 찾기 위해, 수업이 있는날을 개강일로 지정하고 탐색
             index = i      
             temp = n                # 목표하는 수업 일수
-            result = 0
+            result = 0              # 학교 등교 일수 기록
           
             while temp > 0:          # 첫 개강날짜를 잡으면, 그뒤로 목표일수를 다채울때까지 무한 루프
                 if week[index] == 1:
