@@ -14,12 +14,12 @@ for test_case in range(1,11):
         if order[i] == "I":
             index = int(order[i+1])         # 1
             count = int(order[i+2])         # 5
-            num = order[i+3 : i+3 + count]     
+            num = order[i+3 : i+3 + count]    # 400905 139831 966064 336948 119288  넣을 숫자
 
             n = 0
-            for i in num:                    # 이부분이 헷갈렸음..(추가하는 부분)
-                two.insert(index+n,i)
-                n += 1
+            for i in num:                    # 400905 139831 966064 336948 119288 넣어야 하는 숫자 
+                two.insert(index+n,i)        # 넣어야 하는 index가 하나 넣을때 마다 늘어나기 때문에 
+                n += 1                       # 1씩 계속 올림
     result = ' '.join(map(str,two[:10]))
 
     print(f'#{test_case} {result}')
