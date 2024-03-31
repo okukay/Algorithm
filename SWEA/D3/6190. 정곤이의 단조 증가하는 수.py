@@ -3,8 +3,8 @@
 
 #2 단조인지 확인 하는 함수
 def isdanjo(si):
-    for i in range(1,len(si)):     # 1
-        if si[i-1] > si[i]:
+    for i in range(1,len(si)):     
+        if si[i-1] > si[i]:        #    앞에께 더 크면 단조가 아님 (42(x) ,  24(o) )
             return False
     int_si = int(si)
     return int_si
@@ -16,15 +16,15 @@ for test_case in range(1,tc+1):
     danjo = []
   
     #1 모든 경우의수 돌기
-    for i in range(n-1):
-        for j in range(i+1,n):
-            number = (num[i] * num[j])
+    for i in range(n-1):          # 2,4,7
+        for j in range(i+1,n):    # 4,7,10
+            number = (num[i] * num[j])        #  2*4, 4*7, 7*10
             danjo.append(str(number))
           
     #3 단조값중 최댓값 최신화 시키기
     max = 0
     for si in danjo:
-        result = isdanjo(si)
+        result = isdanjo(si)            # 모든 경우의수 isdanjo() 이용해서 판별
         if max < result:
             max = result
         if max == 0:
