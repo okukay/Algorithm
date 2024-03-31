@@ -14,7 +14,7 @@ for test_case in range(1,11):
         if order[i] == "I":
             index = int(order[i+1])         # 1
             count = int(order[i+2])         # 5
-            num = order[i+3:i+3 +int(order[i+2])]     
+            num = order[i+3 : i+3 + count]     
 
             n = 0
             for i in num:                    # 이부분이 헷갈렸음..(추가하는 부분)
