@@ -10,80 +10,66 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static final int INF = Integer.MAX_VALUE;
-    static ArrayList<int[]>[] graph;  // [목적지, 가중치] 쌍을 저장할 리스트
-    static int[] distance;
-    static int V, E, K;
+    static int INF = Integer.MAX_VALUE;
 
     public static void main(String[] args) throws IOException {
+        StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String L = br.readLine();
-        StringTokenizer st = new StringTokenizer(L);
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int V = Integer.parseInt(st.nextToken()); //정점
+        int E = Integer.parseInt(st.nextToken());  //간선
 
-        V = Integer.parseInt(st.nextToken()); // 정점의 개수 5
-        E = Integer.parseInt(st.nextToken()); // 간선의 개수 (5+1)
+        int K = Integer.parseInt(br.readLine());
 
-        K = Integer.parseInt(br.readLine());
-
-        graph = new ArrayList[V + 1];
+        ArrayList<int[]>[] adj = new ArrayList[V + 1];
         for (int i = 0; i <= V; i++) {
-            graph[i] = new ArrayList<>();
+            adj[i] = new ArrayList<>();
         }
 
         for (int i = 0; i < E; i++) {
-            String Line = br.readLine();
-            st = new StringTokenizer(Line);
-            int u = Integer.parseInt(st.nextToken());
-            int v = Integer.parseInt(st.nextToken());
-            int w = Integer.parseInt(st.nextToken());
+            st = new StringTokenizer(br.readLine());
+            int from = Integer.parseInt(st.nextToken());
+            int to = Integer.parseInt(st.nextToken());
+            int cost = Integer.parseInt(st.nextToken());
 
-            graph[u].add(new int[]{v, w});
+            adj[from].add(new int[]{to, cost});
         }
 
+        int[] dist = new int[V + 1];
+        Arrays.fill(dist, INF);
+        dist[K] = 0;
 
-        distance = new int[V + 1];
-        Arrays.fill(distance, INF);
-
-        // 다익스트라 실행
-        dijkstra(K);
-
-        for (int i = 1; i <= V; i++) {
-            if (distance[i] == INF) {
-                System.out.println("INF");
-            } else {
-                System.out.println(distance[i]);
-            }
-        }
-
-    }
-
-    public static void dijkstra(int start) {
-        // PriorityQueue<int[]> : [거리, 정점번호] 로 저장
-        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
-
-        distance[start] = 0;
-        pq.add(new int[]{0, start});
+        // {목적지,가중치}
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+        pq.add(new int[]{K, 0});
 
         while (!pq.isEmpty()) {
-            int[] node = pq.poll(); //(0,1)
-            int dist = node[0]; // 0 
-            int now = node[1];  // 1
+            int[] node = pq.poll();
+            int end = node[0];
+            int cost = node[1];
 
-            if (distance[now] < dist) {
+            if (cost != dist[end]) {
                 continue;
             }
 
-            // 인접노드 계산
-            for (int[] next : graph[now]) {
-                int nextNode = next[0];    // 이동할 수 있는 정점
-                int cost = dist + next[1]; // 그전거리 + 이동거리
+            for (int[] edge : adj[end]) {
+                int v = edge[0]; // 목적지
+                int w = edge[1]; // 가중치
 
-                if (cost < distance[nextNode]) {
-                    distance[nextNode] = cost;
-                    pq.add(new int[]{cost, nextNode});
+                if (dist[v] > cost + w) {
+                    dist[v] = cost + w;
+                    pq.add(new int[]{v, dist[v]});
                 }
             }
         }
+        for (int i = 1; i <= V; i++) {
+            if (dist[i] == INF) {
+                sb.append("INF").append("\n");
+            } else {
+                sb.append(dist[i]).append("\n");
+            }
+        }
+        System.out.println(sb);
     }
 }
